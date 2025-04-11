@@ -6,7 +6,10 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 // Initialize Supabase client
 const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Sign-up function
+// Log Supabase Initialization (to confirm it's working)
+console.log("✅ Supabase Initialized:", supabase);
+
+// 🚀 Sign-up function
 async function signUp() {
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
@@ -23,5 +26,15 @@ async function signUp() {
         console.log("Sign-up success:", data);
         alert("Sign-up successful! Check your email for verification.");
     }
+}
 
-};
+// Wait for DOM content to load before adding event listener
+document.addEventListener("DOMContentLoaded", () => {
+    const signupButton = document.querySelector("button");
+    
+    if (signupButton) {
+        signupButton.addEventListener("click", signUp);
+    } else {
+        console.log("❌ Could not find the sign-up button");
+    }
+});
